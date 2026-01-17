@@ -4,11 +4,14 @@ _Created by [farixzz](https://farixzz.github.io)_
 
 ### 🚀 Live Demo
 
-**[Click here to try the live application!](https://your-app-name.streamlit.app)** <!-- Replace this with your actual Streamlit app URL -->
+**[Click here to try the live application!](https://phishing-detector-ml.streamlit.app/)** 
 
 ---
 
- <!-- Optional: Highly recommended to record a GIF of your app and replace this link -->
+ ## 🖼️ Application Preview
+
+![Phishing Detector Dashboard](assets/app_overview.png)
+
 
 This is a production-grade security tool that leverages a state-of-the-art machine learning pipeline and real-time threat intelligence to detect phishing URLs. The project features a dual interface: a user-friendly web GUI for interactive analysis and a powerful CLI for automation and batch processing.
 
@@ -87,3 +90,61 @@ Launch the Streamlit web application for the most user-friendly experience.
 
 ```bash
 streamlit run app.py
+
+### 2. Command-Line Interface (CLI)
+
+The CLI is ideal for automation and batch processing.
+
+```bash
+python main.py --url "https://www.example.com"
+
+Analyze URLs from a File and Save Results
+
+```bash
+python main.py --input-file urls.txt --output-file results.csv
+
+Get JSON Output for Scripting
+
+```bash
+python main.py --url "http://suspicious-site.com" --json-output
+
+
+
+---
+
+
+
+
+📂 Project Structure
+phishing-detector-ml/
+├── data/               # Raw datasets used for aggregation
+├── models/             # Trained .joblib model (tracked with Git LFS)
+├── .gitignore          # Git ignore rules (data/, config.py, etc.)
+├── README.md           # Project documentation
+├── aggregate_data.py   # Dataset aggregation & cleaning
+├── api_checker.py      # VirusTotal API integration
+├── app.py              # Streamlit GUI application
+├── config.py.template  # Template for local API keys
+├── detector.py         # Core analysis & prediction logic
+├── geo_utils.py        # Threat map geolocation helper
+├── main.py             # CLI entry point
+├── requirements.txt    # Minimal, cloud-safe dependencies
+├── siem_alerter.py     # CEF-based SIEM alert generator
+├── train_model.py      # Model training with auto-threshold tuning
+├── ui_helpers.py       # Explainability (Red Flags) logic
+└── url_normalizer.py   # URL normalization & preprocessing
+
+📄 License
+
+This project is released for educational and research purposes.
+Please use it responsibly and ethically.
+
+⭐ Author
+
+farixzz
+
+🔗 Portfolio: https://farixzz.github.io
+
+🐙 GitHub: https://github.com/farixzz
+
+If you found this project useful, feel free to ⭐ the repository!

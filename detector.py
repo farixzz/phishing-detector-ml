@@ -1,49 +1,58 @@
 import joblib
 import os
+from url_normalizer import normalize_url
 from api_checker import check_virustotal, check_google_safe_browsing
-from url_normalizer import normalize_url 
 
-# --- Load the Model Pipeline ---
+# --- This is the clean, correct way to load the model ---
+# It is loaded only ONCE when the application starts.
 MODEL_PATH = os.path.join('models', 'phishing_pipeline.joblib')
+BUNDLE = None
+PIPELINE = None
+PHISHING_THRESHOLD = 0.5 # Default fallback
+
 try:
-    pipeline = joblib.load(MODEL_PATH)
-except FileNotFoundError:
-    print("FATAL ERROR: Model pipeline not found. Please run train_model.py first.")
-    pipeline = None
+    BUNDLE = joblib.load(MODEL_PATH)
+    PIPELINE = BUNDLE["model"]
+    PHISHING_THRESHOLD = BUNDLE["threshold"]
+    print(f"✅ Model bundle loaded. Using auto-tuned threshold: {PHISHING_THRESHOLD:.4f}")
+except Exception as e:
+    print(f"❌ FATAL ERROR: Could not load model bundle from {MODEL_PATH}. Error: {e}")
+# --------------------------------------------------------
 
 def analyze_url(url):
     """
-    This is the core analysis function.
-    It takes a URL string and returns a dictionary with the full analysis results.
+    This is the core analysis function. It is now pure backend logic
+    with no knowledge of the frontend.
     """
-    if pipeline is None:
+    if PIPELINE is None:
         return {"error": "Model not loaded."}
 
-    # Normalize the URL for the machine learning model.
     normalized_url_for_ml = normalize_url(url)
-    # -----------------------
 
-    # --- 1. Machine Learning Analysis ---
-    prediction = pipeline.predict([normalized_url_for_ml])[0]
-    probabilities = pipeline.predict_proba([normalized_url_for_ml])[0]
-    
-    ml_verdict = "Phishing" if prediction == 1 else "Legitimate"
-    confidence = probabilities[prediction] * 100
+    probabilities = PIPELINE.predict_proba([normalized_url_for_ml])[0]
+    phishing_probability = probabilities[1]
 
-    # --- 2. API Analysis ---
+    if phishing_probability >= PHISHING_THRESHOLD:
+        ml_verdict = "Phishing"
+        confidence_in_verdict = phishing_probability * 100
+    else:
+        ml_verdict = "Legitimate"
+        confidence_in_verdict = (1 - phishing_probability) * 100
+
     vt_status, vt_reason = check_virustotal(url)
     gsb_status, gsb_reason = check_google_safe_browsing(url)
-
-    # --- 3. Final Verdict ---
+    
     final_verdict = "LEGITIMATE"
     if ml_verdict == "Phishing" or vt_status == "MALICIOUS" or gsb_status == "MALICIOUS":
         final_verdict = "PHISHING DETECTED"
 
-    # --- 4. Return a structured dictionary ---
     return {
         "url": url,
         "ml_verdict": ml_verdict,
-        "confidence": confidence,
+        "confidence": confidence_in_verdict,
+        "phishing_probability": phishing_probability * 100,
+        "threshold": PHISHING_THRESHOLD * 100,
+        "target_recall": BUNDLE.get("target_recall", 0.95) * 100,
         "virustotal_status": vt_status,
         "virustotal_reason": vt_reason,
         "google_safe_browsing_status": gsb_status,

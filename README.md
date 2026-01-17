@@ -1,19 +1,89 @@
 # 🎣 Phishing Detector ML Tool
 
-_Created by fariz_
+_Created by [farixzz](https://farixzz.github.io)_
 
-This project is a powerful, multi-interface phishing detection tool that uses a hybrid machine learning model and real-time API checks to identify malicious URLs.
+### 🚀 Live Demo
 
-## ✨ Features
+**[Click here to try the live application!](https://your-app-name.streamlit.app)** <!-- Replace this with your actual Streamlit app URL -->
 
-- **Hybrid Machine Learning Model:** Combines TF-IDF text analysis with engineered features (URL length, dot count, etc.) for robust detection.
-- **Real-time Intelligence:** Validates URLs against live databases from VirusTotal and (optionally) Google Safe Browsing.
-- **SIEM Integration:** Can send alerts in the standard Common Event Format (CEF) for integration into a Security Operations Center (SOC).
-- **Dual Interface:**
-  - **Streamlit GUI:** A user-friendly web interface for easy, interactive analysis.
-  - **Advanced CLI:** A powerful command-line tool with support for batch processing from files and structured JSON/CSV output.
-- **Standalone Executable:** Can be packaged with PyInstaller into a single, portable application.
+---
+
+ <!-- Optional: Highly recommended to record a GIF of your app and replace this link -->
+
+This is a production-grade security tool that leverages a state-of-the-art machine learning pipeline and real-time threat intelligence to detect phishing URLs. The project features a dual interface: a user-friendly web GUI for interactive analysis and a powerful CLI for automation and batch processing.
+
+---
+
+## ✨ Key Features
+
+-   **📊 Batch Analysis & Threat Mapping (GUI):**
+    -   Upload a CSV file containing hundreds of URLs for efficient batch processing.
+    -   Visualize the geographic locations of detected phishing domains on an interactive **Global Threat Map**.
+    -   Download the complete analysis results as a CSV file.
+
+-   **🧠 Production-Grade Machine Learning Model:**
+    -   A sophisticated pipeline combining a **TF-IDF Vectorizer** with a powerful **LightGBM** classifier, trained on a massive dataset of over 500,000 verified URLs.
+    -   **Data-Driven Auto-Thresholding:** The detection threshold isn't a guess. It's automatically calculated using ROC curve analysis during each training cycle to maintain a security-first posture (optimized for >= 95% recall).
+
+-   **🚩 Explainable AI (XAI):**
+    -   When a phishing URL is detected, the tool provides a list of "Potential Red Flags" (e.g., presence of suspicious keywords, use of an IP address), explaining *why* a URL was flagged.
+
+-   **📡 Real-Time API Intelligence:**
+    -   Enhances ML predictions by cross-referencing URLs with the **VirusTotal** API, leveraging data from over 70 security vendors.
+
+-   **🖥️ Dual Interface for All Users:**
+    -   **Graphical User Interface (GUI):** An intuitive and polished web application built with Streamlit.
+    -   **Powerful Command-Line Interface (CLI):** A feature-rich CLI for scripting, automation, and integration, supporting JSON and CSV output.
+
+-   **🚨 Enterprise-Grade Alerting:**
+    -   Includes a **SIEM integration** feature that can send high-confidence alerts in the standard Common Event Format (CEF), allowing it to plug into a professional Security Operations Center (SOC).
+
+---
+
+## 🛠️ Technology Stack
+
+-   **Backend & ML:** Python, Scikit-learn, LightGBM, Pandas, Joblib
+-   **GUI:** Streamlit
+-   **CLI:** Click
+-   **Visualization:** Folium, Streamlit-Folium
+-   **APIs & Data:** Requests, tldextract
+-   **Packaging:** PyInstaller
+-   **Version Control:** Git, Git LFS
+
+---
 
 ## 🚀 Setup and Installation
 
-Follow these steps to get the project running on your local machine.
+1.  **Clone this repository:**
+    ```bash
+    # Replace the URL with your repository's URL from GitHub
+    git clone https://github.com/farixzz/phishing-detector-ml.git
+    cd phishing-detector-ml
+    ```
+
+2.  **Set up the environment:**
+    ```bash
+    python3 -m venv venv
+    # On Windows: venv\Scripts\activate
+    # On Linux/macOS: source venv/bin/activate
+    ```
+
+3.  **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4.  **Configure API Keys:**
+    -   Create a copy of `config.py.template` and rename it to `config.py`.
+    -   Open `config.py` and add your free API key from **VirusTotal**.
+
+---
+
+## 💻 How to Use
+
+### 1. Graphical User Interface (GUI)
+
+Launch the Streamlit web application for the most user-friendly experience.
+
+```bash
+streamlit run app.py

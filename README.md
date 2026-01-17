@@ -84,30 +84,32 @@ This is a production-grade security tool that leverages a state-of-the-art machi
 
 ## 💻 How to Use
 
-### 1. Graphical User Interface (GUI)
+1. **Graphical User Interface (GUI)**
 
-Launch the Streamlit web application for the most user-friendly experience.
+- Launch the Streamlit web application for the most user-friendly experience.
 
 ```bash
 streamlit run app.py
+```
 
-### 2. Command-Line Interface (CLI)
+2. **Command-Line Interface (CLI)**
 
-The CLI is ideal for automation and batch processing.
+- The CLI is ideal for automation and batch processing.
 
 ```bash
 python main.py --url "https://www.example.com"
+```
 
-Analyze URLs from a File and Save Results
+- Analyze URLs from a File and Save Results
 
 ```bash
 python main.py --input-file urls.txt --output-file results.csv
-
-Get JSON Output for Scripting
+```
+- Get JSON Output for Scripting
 
 ```bash
 python main.py --url "http://suspicious-site.com" --json-output
-
+```
 
 
 ---
@@ -115,7 +117,8 @@ python main.py --url "http://suspicious-site.com" --json-output
 
 
 
-📂 Project Structure
+**📂 Project Structure**
+```bash
 phishing-detector-ml/
 ├── data/               # Raw datasets used for aggregation
 ├── models/             # Trained .joblib model (tracked with Git LFS)
@@ -133,18 +136,19 @@ phishing-detector-ml/
 ├── train_model.py      # Model training with auto-threshold tuning
 ├── ui_helpers.py       # Explainability (Red Flags) logic
 └── url_normalizer.py   # URL normalization & preprocessing
+```
 
-📄 License
+**📄 License**
 
-This project is released for educational and research purposes.
-Please use it responsibly and ethically.
+- This project is released for educational and research purposes.
+-Please use it responsibly and ethically.
 
-⭐ Author
+**⭐ Author**
 
-farixzz
+*farixzz*
 
-🔗 Portfolio: https://farixzz.github.io
+- 🔗 Portfolio: https://farixzz.github.io
 
-🐙 GitHub: https://github.com/farixzz
+- 🐙 GitHub: https://github.com/farixzz
 
-If you found this project useful, feel free to ⭐ the repository!
+*If you found this project useful, feel free to ⭐ the repository!*

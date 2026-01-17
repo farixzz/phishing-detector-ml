@@ -1,0 +1,15 @@
+# --- API Keys ---
+# Rename this file to config.py and add your API keys.
+
+# Get your Google Web Risk API key from the Google Cloud Console
+GOOGLE_API_KEY = "YOUR_GOOGLE_API_KEY_HERE"
+
+# Get your VirusTotal API key from your VirusTotal account
+VIRUSTOTAL_API_KEY = "YOUR_VIRUSTOTAL_API_KEY_HERE"
+
+# --- SIEM Configuration ---
+# The IP address of the SIEM server. 127.0.0.1 is your local machine.
+SIEM_IP = "127.0.0.1"
+
+# The port the SIEM is listening on. 514 is the standard for syslog.
+SIEM_PORT = 514

@@ -1,0 +1,26 @@
+# Python virtual environment
+venv/
+
+# Python cache and compiled files
+__pycache__/
+*.pyc
+
+# PyInstaller generated files
+build/
+dist/
+*.spec
+
+# Secret configuration file (VERY IMPORTANT)
+config.py
+
+# Data files (do not commit large datasets)
+data/
+
+# Example input/output files and logs
+*.csv
+*.txt
+
+
+# Models & Generated Artifacts
+models/*.joblib
+models/*.pkl

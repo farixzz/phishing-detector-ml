@@ -21,6 +21,11 @@ data/
 *.txt
 
 
+
 # Models & Generated Artifacts
 models/*.joblib
 models/*.pkl
+
+# DO NOT ignore the requirements.txt file
+!requirements.txt
+# ---------------------------------

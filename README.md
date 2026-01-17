@@ -1,6 +1,6 @@
 # 🎣 Phishing Detector ML Tool
 
-_Created by rizz_
+_Created by fariz_
 
 This project is a powerful, multi-interface phishing detection tool that uses a hybrid machine learning model and real-time API checks to identify malicious URLs.
 

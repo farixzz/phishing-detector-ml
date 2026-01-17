@@ -1,6 +1,6 @@
 import pandas as pd
 import os
-from url_normalizer import normalize_url # Import your discovery!
+from url_normalizer import normalize_url 
 
 def aggregate_and_clean_data():
     kaggle_path = os.path.join('data', 'phishing_site_urls.csv')
@@ -24,7 +24,6 @@ def aggregate_and_clean_data():
     master_df.dropna(subset=['url'], inplace=True)
     master_df.drop_duplicates(subset=['url'], keep='first', inplace=True)
 
-    # --- THE CRITICAL FIX ---
     # Normalize every URL in the dataset before saving.
     print("Normalizing all URLs in the dataset...")
     master_df['url'] = master_df['url'].apply(normalize_url)

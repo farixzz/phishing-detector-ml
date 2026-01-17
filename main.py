@@ -4,7 +4,7 @@ import json
 from detector import analyze_url
 from siem_alerter import send_cef_alert
 
-# --- [NEW] Helper function for a beautiful single result display ---
+# --- Helper function for a beautiful single result display ---
 def display_single_result(results):
     """Formats and prints a single, detailed analysis report."""
     

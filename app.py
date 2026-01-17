@@ -2,10 +2,9 @@ import streamlit as st
 from detector import analyze_url
 
 # --- Page Configuration ---
-# This should be the first Streamlit command in your script
 st.set_page_config(page_title="Phishing Detector", page_icon="🎣", layout="wide")
 
-# --- [NEW] Redesigned Sidebar ---
+# --- Redesigned Sidebar ---
 st.sidebar.title("About This Tool")
 st.sidebar.markdown("""
 This application is a powerful phishing detection tool that leverages a hybrid approach to security.
@@ -16,7 +15,7 @@ This application is a powerful phishing detection tool that leverages a hybrid a
 - **🛡️ Multi-Interface Design:** Fully accessible via this user-friendly GUI and a powerful, scriptable command-line interface.
 """)
 
-# --- [NEW] Creator Badge ---
+# ---  Creator Badge ---
 st.sidebar.title("Creator")
 st.sidebar.markdown(
     """
@@ -89,8 +88,8 @@ if submit_button and url_input:
             
             # Google Safe Browsing
             if results['google_safe_browsing_status'] == "API_ERROR":
-                 st.markdown(f"**Google Safe Browsing:** <span style='color:grey;'>SKIPPED</span>", unsafe_allow_html=True)
+                st.markdown(f"**Google Safe Browsing:** <span style='color:grey;'>SKIPPED</span>", unsafe_allow_html=True)
             elif results['google_safe_browsing_status'] == "MALICIOUS":
-                 st.markdown(f"**Google Safe Browsing:** <span style='color:red;'>{results['google_safe_browsing_reason']}</span>", unsafe_allow_html=True)
+                st.markdown(f"**Google Safe Browsing:** <span style='color:red;'>{results['google_safe_browsing_reason']}</span>", unsafe_allow_html=True)
             else:
-                 st.markdown(f"**Google Safe Browsing:** <span style='color:green;'>{results['google_safe_browsing_reason']}</span>", unsafe_allow_html=True)
+                st.markdown(f"**Google Safe Browsing:** <span style='color:green;'>{results['google_safe_browsing_reason']}</span>", unsafe_allow_html=True)

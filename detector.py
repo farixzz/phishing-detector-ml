@@ -1,7 +1,7 @@
 import joblib
 import os
 from api_checker import check_virustotal, check_google_safe_browsing
-from url_normalizer import normalize_url # <-- IMPORT THE FIX
+from url_normalizer import normalize_url 
 
 # --- Load the Model Pipeline ---
 MODEL_PATH = os.path.join('models', 'phishing_pipeline.joblib')
@@ -19,13 +19,11 @@ def analyze_url(url):
     if pipeline is None:
         return {"error": "Model not loaded."}
 
-    # --- THE CRITICAL FIX ---
     # Normalize the URL for the machine learning model.
     normalized_url_for_ml = normalize_url(url)
     # -----------------------
 
     # --- 1. Machine Learning Analysis ---
-    # Use the normalized URL for ML prediction
     prediction = pipeline.predict([normalized_url_for_ml])[0]
     probabilities = pipeline.predict_proba([normalized_url_for_ml])[0]
     
@@ -33,7 +31,6 @@ def analyze_url(url):
     confidence = probabilities[prediction] * 100
 
     # --- 2. API Analysis ---
-    # Use the ORIGINAL, full URL for API checks
     vt_status, vt_reason = check_virustotal(url)
     gsb_status, gsb_reason = check_google_safe_browsing(url)
 

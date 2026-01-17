@@ -13,7 +13,7 @@ def train_the_definitive_model():
     df = pd.read_csv(data_path)
     df.dropna(inplace=True)
 
-    X = df['url'] # The URLs are now pre-normalized
+    X = df['url'] 
     y = df['label']
     
     X_train, X_test, y_train, y_test = train_test_split(

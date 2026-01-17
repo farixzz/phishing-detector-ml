@@ -16,7 +16,7 @@ def check_google_safe_browsing(url):
     
     try:
         response = requests.get(api_url, params=payload)
-        response.raise_for_status()  # Raise an exception for bad status codes (4xx or 5xx)
+        response.raise_for_status()  
         
         result = response.json()
         

@@ -8,5 +8,4 @@ def normalize_url(url):
     """
     if not isinstance(url, str):
         return ""
-    # Remove http://, https://, and www.
     return re.sub(r'^(https?://)?(www\.)?', '', url).strip('/')

@@ -1,4 +1,6 @@
-# 🎣 Phishing Detector ML Tool
+# 🚨 Phishing Detector ML
+Machine Learning–Based Phishing URL Detection System with Threat Intelligence & Visualization
+
 
 _Created by [farixzz](https://farixzz.github.io)_
 
@@ -8,10 +10,11 @@ _Created by [farixzz](https://farixzz.github.io)_
 
 ---
 
- ## 🖼️ Application Preview
 
-![Phishing Detector Dashboard](assets/app_overview.png)
-
+## 🖼️ Application Preview
+<p align="center">
+  <img src="assets/app_overview.png" width="900" />
+</p>
 
 This is a production-grade security tool that leverages a state-of-the-art machine learning pipeline and real-time threat intelligence to detect phishing URLs. The project features a dual interface: a user-friendly web GUI for interactive analysis and a powerful CLI for automation and batch processing.
 
@@ -42,6 +45,29 @@ This is a production-grade security tool that leverages a state-of-the-art machi
     -   Includes a **SIEM integration** feature that can send high-confidence alerts in the standard Common Event Format (CEF), allowing it to plug into a professional Security Operations Center (SOC).
 
 ---
+
+## 🏗️ System Architecture
+
+```mermaid
+flowchart LR
+
+U[User / Analyst] --> UI[Streamlit UI / CLI]
+
+UI --> N[URL Normalizer]
+N --> F[Feature Extraction]
+
+F --> M[ML Pipeline<br/>TF-IDF + LightGBM]
+M --> P[Probability Scoring<br/>+ Auto Threshold]
+
+P --> E[Explainability Engine<br/>Red Flags]
+
+P --> TI[Threat Intelligence<br/>VirusTotal API]
+P --> G[Threat Map<br/>Geo Visualization]
+P --> S[SIEM Alerts<br/>CEF Format]
+
+TI --> UI
+G --> UI
+E --> UI
 
 ## 🛠️ Technology Stack
 
@@ -140,15 +166,16 @@ phishing-detector-ml/
 
 **📄 License**
 
-- This project is released for educational and research purposes.
--Please use it responsibly and ethically.
+## ⚠️ Disclaimer
 
-**⭐ Author**
+This project is intended for educational and research purposes only.
+Do not use this tool for illegal, unethical, or unauthorized activities.
 
-*farixzz*
+## ⭐ Author
 
-- 🔗 Portfolio: https://farixzz.github.io
+**farixzz**
 
+- 🌐 Portfolio: https://farixzz.github.io
 - 🐙 GitHub: https://github.com/farixzz
 
 *If you found this project useful, feel free to ⭐ the repository!*

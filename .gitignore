@@ -29,4 +29,5 @@ models/*.pkl
 # DO NOT ignore the requirements.txt file
 !requirements.txt
 !runtime.txt
+!packages.txt
 # ---------------------------------
